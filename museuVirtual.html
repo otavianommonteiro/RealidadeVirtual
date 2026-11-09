@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <title>Museu Virtual 3D</title>
+
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #titulo {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div id="titulo">
+  MUSEU VIRTUAL 3D
+  <br>
+  Explore as obras de arte!
+</div>
+
+<a-scene
+  background="color: #eeeeee"
+  vr-mode-ui="enabled: true"
+>
+
+  <!-- ILUMINAÇÃO -->
+
+  <a-light
+    type="ambient"
+    color="#ffffff"
+    intensity="1">
+  </a-light>
+
+  <a-light
+    type="directional"
+    position="0 5 2"
+    intensity="0.8">
+  </a-light>
+
+  <!-- CHÃO -->
+
+  <a-plane
+    position="0 0 0"
+    rotation="-90 0 0"
+    width="14"
+    height="18"
+    color="#bcbcbc">
+  </a-plane>
+
+  <!-- PAREDE DO FUNDO -->
+
+  <a-box
+    position="0 2 -8"
+    width="14"
+    height="4"
+    depth="0.2"
+    color="#ffffff">
+  </a-box>
+
+  <!-- PAREDE ESQUERDA -->
+
+  <a-box
+    position="-7 2 0"
+    width="0.2"
+    height="4"
+    depth="16"
+    color="#ffffff">
+  </a-box>
+
+  <!-- PAREDE DIREITA -->
+
+  <a-box
+    position="7 2 0"
+    width="0.2"
+    height="4"
+    depth="16"
+    color="#ffffff">
+  </a-box>
+
+  <!-- QUADRO 1 -->
+
+  <a-box
+    position="-4 2 -7.85"
+    width="2"
+    height="2"
+    depth="0.08"
+    color="#222222">
+  </a-box>
+
+  <a-plane
+    position="-4 2 -7.79"
+    width="1.7"
+    height="1.7"
+    color="#e74c3c">
+  </a-plane>
+
+  <a-sphere
+    position="-4 2 -7.68"
+    radius="0.55"
+    color="#f1c40f">
+  </a-sphere>
+
+  <a-text
+    value="Obra 1 - Sol"
+    position="-4 0.7 -7.7"
+    align="center"
+    color="#222222"
+    width="4">
+  </a-text>
+
+  <!-- QUADRO 2 -->
+
+  <a-box
+    position="0 2 -7.85"
+    width="2"
+    height="2"
+    depth="0.08"
+    color="#222222">
+  </a-box>
+
+  <a-plane
+    position="0 2 -7.79"
+    width="1.7"
+    height="1.7"
+    color="#3498db">
+  </a-plane>
+
+  <a-triangle
+    position="0 2 -7.68"
+    vertex-a="0 0.6 0"
+    vertex-b="-0.6 -0.5 0"
+    vertex-c="0.6 -0.5 0"
+    color="#ffffff">
+  </a-triangle>
+
+  <a-text
+    value="Obra 2 - Montanha"
+    position="0 0.7 -7.7"
+    align="center"
+    color="#222222"
+    width="4">
+  </a-text>
+
+  <!-- QUADRO 3 -->
+
+  <a-box
+    position="4 2 -7.85"
+    width="2"
+    height="2"
+    depth="0.08"
+    color="#222222">
+  </a-box>
+
+  <a-plane
+    position="4 2 -7.79"
+    width="1.7"
+    height="1.7"
+    color="#8e44ad">
+  </a-plane>
+
+  <a-torus
+    position="4 2 -7.68"
+    radius="0.5"
+    radius-tubular="0.12"
+    color="#f1c40f">
+  </a-torus>
+
+  <a-text
+    value="Obra 3 - Arte"
+    position="4 0.7 -7.7"
+    align="center"
+    color="#222222"
+    width="4">
+  </a-text>
+
+  <!-- ESCULTURA CENTRAL -->
+
+  <a-cylinder
+    position="0 0.5 -3"
+    radius="0.9"
+    height="1"
+    color="#555555">
+  </a-cylinder>
+
+  <a-sphere
+    position="0 1.8 -3"
+    radius="0.8"
+    color="#e67e22"
+    animation="
+      property: rotation;
+      to: 0 360 0;
+      loop: true;
+      dur: 8000">
+  </a-sphere>
+
+  <a-text
+    value="Escultura Central"
+    position="0 2.9 -3"
+    align="center"
+    color="#222222"
+    width="5">
+  </a-text>
+
+  <!-- CÂMERA -->
+
+  <a-entity
+    position="0 1.6 4"
+    camera
+    look-controls
+    wasd-controls>
+  </a-entity>
+
+</a-scene>
+
+</body>
+</html>
