@@ -4,11 +4,10 @@
 
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
 
-  <title>Museu Virtual 3D</title>
+  <title>Museu Virtual Interativo</title>
 
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
@@ -31,6 +30,56 @@
     }
   </style>
 
+  <script>
+
+    // COMPONENTE PARA ABRIR O MENU DE INFORMAÇÕES
+
+    AFRAME.registerComponent('obra-interativa', {
+
+      schema: {
+        titulo: {type: 'string'},
+        descricao: {type: 'string'}
+      },
+
+      init: function () {
+
+        this.el.addEventListener('click', () => {
+
+          const painel = document.querySelector('#painel');
+
+          painel.setAttribute('visible', true);
+
+          painel.querySelector('#textoTitulo')
+            .setAttribute('value', this.data.titulo);
+
+          painel.querySelector('#textoDescricao')
+            .setAttribute('value', this.data.descricao);
+
+        });
+
+      }
+
+    });
+
+    // COMPONENTE PARA FECHAR O MENU
+
+    AFRAME.registerComponent('fechar-painel', {
+
+      init: function () {
+
+        this.el.addEventListener('click', () => {
+
+          document.querySelector('#painel')
+            .setAttribute('visible', false);
+
+        });
+
+      }
+
+    });
+
+  </script>
+
 </head>
 
 <body>
@@ -38,12 +87,13 @@
 <div id="titulo">
   MUSEU VIRTUAL 3D
   <br>
-  Explore as obras de arte!
+  Clique nas obras para conhecer!
 </div>
 
 <a-scene
   background="color: #eeeeee"
   vr-mode-ui="enabled: true"
+  cursor="rayOrigin: mouse"
 >
 
   <!-- ILUMINAÇÃO -->
@@ -70,7 +120,7 @@
     color="#bcbcbc">
   </a-plane>
 
-  <!-- PAREDE DO FUNDO -->
+  <!-- PAREDES -->
 
   <a-box
     position="0 2 -8"
@@ -80,8 +130,6 @@
     color="#ffffff">
   </a-box>
 
-  <!-- PAREDE ESQUERDA -->
-
   <a-box
     position="-7 2 0"
     width="0.2"
@@ -89,8 +137,6 @@
     depth="16"
     color="#ffffff">
   </a-box>
-
-  <!-- PAREDE DIREITA -->
 
   <a-box
     position="7 2 0"
@@ -114,22 +160,24 @@
     position="-4 2 -7.79"
     width="1.7"
     height="1.7"
-    color="#e74c3c">
+    color="#e74c3c"
+    class="clicavel"
+    obra-interativa="
+      titulo: O Sol;
+      descricao: O Sol é a estrela central do Sistema Solar. Sua energia é essencial para a vida na Terra.
+    ">
   </a-plane>
 
   <a-sphere
     position="-4 2 -7.68"
     radius="0.55"
-    color="#f1c40f">
+    color="#f1c40f"
+    class="clicavel"
+    obra-interativa="
+      titulo: O Sol;
+      descricao: O Sol é a estrela central do Sistema Solar. Sua energia é essencial para a vida na Terra.
+    ">
   </a-sphere>
-
-  <a-text
-    value="Obra 1 - Sol"
-    position="-4 0.7 -7.7"
-    align="center"
-    color="#222222"
-    width="4">
-  </a-text>
 
   <!-- QUADRO 2 -->
 
@@ -145,7 +193,12 @@
     position="0 2 -7.79"
     width="1.7"
     height="1.7"
-    color="#3498db">
+    color="#3498db"
+    class="clicavel"
+    obra-interativa="
+      titulo: Montanhas;
+      descricao: As montanhas são grandes elevações naturais do terreno. Elas influenciam o clima e os ecossistemas.
+    ">
   </a-plane>
 
   <a-triangle
@@ -153,16 +206,13 @@
     vertex-a="0 0.6 0"
     vertex-b="-0.6 -0.5 0"
     vertex-c="0.6 -0.5 0"
-    color="#ffffff">
+    color="#ffffff"
+    class="clicavel"
+    obra-interativa="
+      titulo: Montanhas;
+      descricao: As montanhas são grandes elevações naturais do terreno. Elas influenciam o clima e os ecossistemas.
+    ">
   </a-triangle>
-
-  <a-text
-    value="Obra 2 - Montanha"
-    position="0 0.7 -7.7"
-    align="center"
-    color="#222222"
-    width="4">
-  </a-text>
 
   <!-- QUADRO 3 -->
 
@@ -178,23 +228,25 @@
     position="4 2 -7.79"
     width="1.7"
     height="1.7"
-    color="#8e44ad">
+    color="#8e44ad"
+    class="clicavel"
+    obra-interativa="
+      titulo: Arte abstrata;
+      descricao: A arte abstrata utiliza formas, cores e linhas para expressar ideias e sentimentos.
+    ">
   </a-plane>
 
   <a-torus
     position="4 2 -7.68"
     radius="0.5"
     radius-tubular="0.12"
-    color="#f1c40f">
+    color="#f1c40f"
+    class="clicavel"
+    obra-interativa="
+      titulo: Arte abstrata;
+      descricao: A arte abstrata utiliza formas, cores e linhas para expressar ideias e sentimentos.
+    ">
   </a-torus>
-
-  <a-text
-    value="Obra 3 - Arte"
-    position="4 0.7 -7.7"
-    align="center"
-    color="#222222"
-    width="4">
-  </a-text>
 
   <!-- ESCULTURA CENTRAL -->
 
@@ -209,6 +261,11 @@
     position="0 1.8 -3"
     radius="0.8"
     color="#e67e22"
+    class="clicavel"
+    obra-interativa="
+      titulo: Escultura central;
+      descricao: Esta escultura representa uma composição geométrica tridimensional. Observe suas formas e volumes.
+    "
     animation="
       property: rotation;
       to: 0 360 0;
@@ -216,21 +273,83 @@
       dur: 8000">
   </a-sphere>
 
-  <a-text
-    value="Escultura Central"
-    position="0 2.9 -3"
-    align="center"
-    color="#222222"
-    width="5">
-  </a-text>
+  <!-- PAINEL INTERATIVO -->
 
-  <!-- CÂMERA -->
+  <a-entity
+    id="painel"
+    position="0 2 -2"
+    visible="false">
+
+    <!-- Fundo -->
+
+    <a-plane
+      width="3.8"
+      height="2.5"
+      color="#172033"
+      material="shader: flat; opacity: 0.96; transparent: true">
+    </a-plane>
+
+    <!-- Título -->
+
+    <a-text
+      id="textoTitulo"
+      value="Informações"
+      position="-1.65 0.85 0.02"
+      width="3.3"
+      color="#FFD166"
+      align="left">
+    </a-text>
+
+    <!-- Descrição -->
+
+    <a-text
+      id="textoDescricao"
+      value="Descrição da obra"
+      position="-1.65 0.35 0.02"
+      width="3.3"
+      color="#ffffff"
+      align="left"
+      wrap-count="38">
+    </a-text>
+
+    <!-- Botão fechar -->
+
+    <a-plane
+      position="0 -0.9 0.04"
+      width="1.2"
+      height="0.4"
+      color="#e74c3c"
+      class="clicavel"
+      fechar-painel>
+    </a-plane>
+
+    <a-text
+      value="FECHAR"
+      position="0 -0.9 0.06"
+      align="center"
+      anchor="center"
+      width="3"
+      color="#ffffff"
+      class="clicavel"
+      fechar-painel>
+    </a-text>
+
+  </a-entity>
+
+  <!-- CÂMERA E CURSOR -->
 
   <a-entity
     position="0 1.6 4"
     camera
     look-controls
     wasd-controls>
+
+    <a-cursor
+      color="#FFD166"
+      fuse="false"
+      raycaster="objects: .clicavel">
+    </a-cursor>
+
   </a-entity>
 
 </a-scene>
