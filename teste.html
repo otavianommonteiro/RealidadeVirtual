@@ -40,7 +40,7 @@
 
   <script>
 
-    // COMPONENTE PARA ABRIR O MENU DE INFORMAÇÕES
+    // ABRIR PAINEL DE INFORMAÇÕES
 
     AFRAME.registerComponent('obra-interativa', {
 
@@ -55,13 +55,13 @@
 
           const painel = document.querySelector('#painel');
 
-          painel.setAttribute('visible', true);
-
           painel.querySelector('#textoTitulo')
             .setAttribute('value', this.data.titulo);
 
           painel.querySelector('#textoDescricao')
             .setAttribute('value', this.data.descricao);
+
+          painel.setAttribute('visible', true);
 
         });
 
@@ -70,16 +70,27 @@
     });
 
 
-    // COMPONENTE PARA FECHAR O MENU
+    // FECHAR PAINEL COM CLIQUE OU TOQUE
 
     AFRAME.registerComponent('fechar-painel', {
 
       init: function () {
 
-        this.el.addEventListener('click', () => {
+        const fechar = () => {
 
           document.querySelector('#painel')
             .setAttribute('visible', false);
+
+        };
+
+        this.el.addEventListener('click', fechar);
+
+        this.el.addEventListener('touchend', (evento) => {
+
+          evento.preventDefault();
+          evento.stopPropagation();
+
+          fechar();
 
         });
 
@@ -326,25 +337,27 @@
 
     <!-- BOTÃO FECHAR -->
 
-    <a-plane
-      position="0 -0.9 0.04"
-      width="1.2"
-      height="0.4"
-      color="#e74c3c"
+    <a-entity
+      position="0 -0.9 0.05"
       class="clicavel"
       fechar-painel>
-    </a-plane>
 
-    <a-text
-      value="FECHAR"
-      position="0 -0.9 0.06"
-      align="center"
-      anchor="center"
-      width="3"
-      color="#ffffff"
-      class="clicavel"
-      fechar-painel>
-    </a-text>
+      <a-plane
+        width="1.5"
+        height="0.5"
+        color="#e74c3c">
+      </a-plane>
+
+      <a-text
+        value="FECHAR"
+        position="0 0 0.02"
+        align="center"
+        anchor="center"
+        width="3"
+        color="#ffffff">
+      </a-text>
+
+    </a-entity>
 
   </a-entity>
 
