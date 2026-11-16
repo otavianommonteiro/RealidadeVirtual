@@ -2,77 +2,51 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1">
-
-  <title>Meu Ambiente Virtual 360</title>
-
-  <!-- Biblioteca A-Frame -->
-  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-
+  <meta charset = "UTF-8">
+  <meta name = "viewport" 
+     content = "width=device-width, intial-scale=1">
+  <title> Ambiente Virtual 360 </title>
+  <!-- Biblioteca A-frame-->
+  <script src = "https://aframe.io/releases/1.6.0/aframe.min.js">
+  </script>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+    body{
+     margin: 0;
+     font-family: Arial, sans-serif;
     }
-
-    #info {
+    #info{
       position: fixed;
       top: 12px;
       left: 12px;
       z-index: 10;
-      padding: 12px 15px;
-      background: rgba(0, 0, 0, 0.7);
+      padding: 12px 15 px;
+      background: rgba(0,0,0,0.7);
       color: white;
       border-radius: 8px;
       font-size: 14px;
     }
   </style>
-
 </head>
-
 <body>
-
-  <div id="info">
-    Ambiente Virtual 360°
+  <div id ="info">
+    Ambiente Virtual 360
     <br>
     Arraste a tela para olhar ao redor.
   </div>
-
   <a-scene
-    vr-mode-ui="enabled: true"
-    renderer="antialias: true"
+    vr-mode-ui = "enabled:true"
+    renderer="antialias:true"
   >
+  <a-sky>
+    src = "Washington360.jfif"
+    rotation = "0 -90 0">
+  </a-sky>
 
-    <!-- Imagem panorâmica 360 graus -->
-
-    <a-sky
-      src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg"
-      rotation="0 -90 0">
-    </a-sky>
-
-    <!--a-sky
-      src="Washington360.jfif"
-      rotation="0 -90 0">
-  </a-sky-->
-
-    <!--a-sky
-      src="laboratorio.jpg"
-      rotation="0 -90 0">
-  </a-sky-->
-    
-    <!-- Câmera com controle de movimento -->
-
-    <a-entity
-      position="0 1.6 0"
-      camera
-      look-controls
-    >
+   <a-entity 
+     position = "0 1.6 0"
+     camera
+     look-controls>
     </a-entity>
-
   </a-scene>
-
 </body>
 </html>
