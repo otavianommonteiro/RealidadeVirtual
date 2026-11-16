@@ -104,23 +104,16 @@
   renderer="
     antialias: false;
     precision: mediump;
-    powerPreference: low-power;
-    sortObjects: true;
-    physicallyCorrectLights: false">
+    colorManagement: true;
+    physicallyCorrectLights: false;
+    logarithmicDepthBuffer: false">
 
-  <!-- ILUMINAÇÃO OTIMIZADA -->
+  <!-- ILUMINAÇÃO SIMPLIFICADA -->
 
   <a-light
     type="ambient"
     color="#ffffff"
-    intensity="1.5">
-  </a-light>
-
-  <a-light
-    type="directional"
-    position="0 5 2"
-    color="#ffffff"
-    intensity="0.4">
+    intensity="1">
   </a-light>
 
   <!-- CHÃO -->
