@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1">
+        content="width=device-width, initial-scale=1">
 
   <title>Museu Virtual Interativo</title>
 
@@ -14,6 +14,7 @@
   <style>
     body {
       margin: 0;
+      padding: 0;
       font-family: Arial, sans-serif;
       overflow: hidden;
     }
@@ -94,14 +95,13 @@
 <div id="titulo">
   MUSEU VIRTUAL 3D
   <br>
-  Toque nas obras para conhecer!
+  Mire nas obras para conhecer!
 </div>
 
 <a-scene
   background="color: #eeeeee"
   vr-mode-ui="enabled: false"
-  renderer="antialias: false; precision: mediump; powerPreference: low-power"
-  cursor="rayOrigin: entity">
+  renderer="antialias: false; precision: mediump; powerPreference: low-power">
 
   <!-- ILUMINAÇÃO -->
 
@@ -338,20 +338,27 @@
 
   </a-entity>
 
-  <!-- CÂMERA E CURSOR -->
+  <!-- CÂMERA E MIRA -->
 
   <a-entity
+    id="camera"
     position="0 1.6 4"
     camera
     look-controls="magicWindowTrackingEnabled: false; touchEnabled: true"
     wasd-controls="enabled: false">
 
-    <a-cursor
-      color="#FFD166"
-      fuse="true"
-      fuse-timeout="800"
-      raycaster="objects: .clicavel">
-    </a-cursor>
+    <a-entity
+      cursor="rayOrigin: entity; fuse: false"
+      raycaster="objects: .clicavel; far: 20"
+      position="0 0 -1"
+      geometry="
+        primitive: ring;
+        radiusInner: 0.015;
+        radiusOuter: 0.025"
+      material="
+        color: #FFD166;
+        shader: flat">
+    </a-entity>
 
   </a-entity>
 
